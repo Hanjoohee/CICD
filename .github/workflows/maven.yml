@@ -41,5 +41,5 @@ jobs:
 
     # 압축한 파일을 S3로 업로드
     - name: Upload src.zip to S3
-      run: aws s3 cp src.zip s3://${{ env.S3_BUCKET_NAME }}/src.zip
+      run: aws s3 cp src.zip s3://${{ env.S3_hjh-codebuild-bucket }}/src.zip
       shell: bash
