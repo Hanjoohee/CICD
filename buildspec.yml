@@ -1,0 +1,30 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+  pre_build:
+    commands:
+      - echo "Preparing build environment"
+      - export LC_ALL="en_US.UTF-8"
+      - locale-gen en_US en_US.UTF-8
+      - dpkg-reconfigure locales
+  build:
+    commands:
+      - echo "Build started on $(date)"
+      - echo "Checking if src directory exists"
+      - zip -r src.zip ./src/
+      - zip -r scripts.zip ./scripts/
+  post_build:
+    commands:
+      - echo "Build completed on $(date)"
+      - echo "Checking if src.zip was created successfully"
+      - aws s3 cp src.zip s3://hjh-codebuild-bucket/src.zip
+
+artifacts:
+  files:
+    - src.zip
+    - scripts.zip
+    - buildspec.yml
+    - appspec.yml
