@@ -139,14 +139,14 @@
             <div class="header">
      <div class="logo-section">
             <!-- '92m.com' 텍스트에 하이퍼링크 추가 -->
-            <a href="index.html" style="text-decoration: none; color: black;">
+            <a href="user_index.html" style="text-decoration: none; color: black;">
                 <span class="logo-text">92m.com</span>
             </a>
         </div>
 
         <nav>
-            <form action="/login">
-                <input type="submit" value="SIGN IN" style="background-color: #333;">
+            <form action="index.html">
+                <input type="submit" value="LOG OUT" style="background-color: #333;">
             </form>
             <form action="/createuser">
                 <input type="submit" value="JOIN US" style="background-color: #333;">
@@ -167,55 +167,6 @@
     </div>
 
     <div class="product-grid">
-<<<<<<< HEAD
-<?php
-// 데이터베이스 연결
-$db = new mysqli('192.168.43.2', 'root', '1234', 'SHOP');
-if ($db->connect_error) {
-    die("Connection failed: " . $db->connect_error);
-}
-
-// 상품 ID 가져오기
-$productId = isset($_GET['id']) ? intval($_GET['id']) : 1;
-
-// 해당 상품 정보 가져오기
-$sql = "SELECT PD_ID, PD_NAME, PD_PRICE, PD_DESC FROM product WHERE PD_ID = $productId";
-$result = $db->query($sql);
-
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-
-    // Product container
-    echo "<div class='product-container'>";
-
-    // Product image
-    echo "<div class='product-image'>";
-    echo "<img src='/img/" . $row["PD_ID"] . ".jpg' alt='Image'>";
-
-    echo "</div>";
-
-    // Product details
-    echo "<div class='product-details'>";
-    echo "<h1>" . htmlspecialchars($row["PD_NAME"], ENT_QUOTES, 'UTF-8') . "</h1>";
-    echo "<p>가격: " . number_format($row["PD_PRICE"]) . "원</p>";
-    echo "<p>설명: " . htmlspecialchars($row["PD_DESC"], ENT_QUOTES, 'UTF-8') . "</p>";
-    echo "<p>배송정보: 일반 출고 3일 이내 출고 (주말, 공휴일 제외)</p>";
-    echo "<p>배송비: 해당 브랜드 제품은 무료배송. 제주도 및 도서/산간지역은 추가배송비 6,000원</p>";
-    echo "<button class='product-button' style='background-color: #333;'>CART</button>";
-    echo "<button class='product-button' style='background-color: #333;'>BUY NOW</button>";
-    echo "</div>";
-
-    // End of product container
-    echo "</div>";
-
-} else {
-    echo "상품 정보를 찾을 수 없습니다.";
-}
-
-$db->close();
-?>
-</div>
-=======
         <?php
             // 데이터베이스 연결
 <<<<<<< HEAD
@@ -271,7 +222,6 @@ $db->close();
             $db->close();
         ?>
     </div>
->>>>>>> 0c2aaa7d5ac779e56ceadcd44b3a91b2ca54d666
 
 
 </body>

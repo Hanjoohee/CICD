@@ -137,6 +137,7 @@
 <?php
 $userCreated = false;
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
+<<<<<<< HEAD
     $db = new mysqli('rds_endpoint', 'username', 'password', 'db_name');
     if ($db->connect_error) {
         die('Connection Failed: ' . $db->connect_error);
@@ -155,11 +156,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $stmt->bind_param("ss", $_POST['ID'], $_POST['PW']);
         $result = $stmt->execute();
 
+=======
+    $db = new mysqli('${rds_endpoint}', '${username}', '${password}', '${db_name}');
+    if($db->connect_error){
+        die('Not Connected : ' . $db->connect_error);
+    }
+
+    $sql2 = "SELECT ID FROM user WHERE ID='$_POST[ID]'";
+    $result2 = $db->query($sql2);
+    if ($result2->num_rows !== 0) {
+        echo "<p>User Exists!</p>";
+    } else {
+        $sql = "INSERT INTO user (ID, PW) VALUES ('$_POST[ID]', '$_POST[PW]')";
+        $result = $db->query($sql);
+>>>>>>> 0c2aaa7d5ac779e56ceadcd44b3a91b2ca54d666
         if ($result) {
             $userCreated = true;
             echo '<p>List of users</p>';
             echo "-------------------------------------------------------";
 
+<<<<<<< HEAD
             // 데이터 조회
             $query = $db->prepare("SELECT ID, PW FROM user");
             $query->execute();
@@ -170,6 +186,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         } else {
             echo "<p>Error: " . $db->error . "</p>";
+=======
+            // 결과를 확인하는 새로운 데이터베이스 연결
+            $conn = new mysqli('${rds_endpoint}', '${username}', '${password}', '${db_name}');
+            $sql = "SELECT * FROM user";
+            $result = $conn->query($sql);
+
+            while ($row = $result->fetch_assoc()) {
+                echo '<p>ID : ' . $row['ID'] . '&emsp;&emsp;' . 'PW : ' . $row['PW'] . '</p>';
+            }
+        } else {
+            echo "<p>ERROR</p>";
+>>>>>>> 0c2aaa7d5ac779e56ceadcd44b3a91b2ca54d666
         }
     }
 }
@@ -178,11 +206,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 <!-- 회원 가입 폼 -->
 <?php if (!$userCreated): ?>
     <form action="" method="post">
+<<<<<<< HEAD
         <label for="ID">ACCOUNT ID:</label>
         <input type="text" name="ID" id="ID">
 
         <label for="PW">ACCOUNT PASSWORD:</label>
         <input type="password" name="PW" id="PW">
+=======
+        <label for="ID">ACCOUNT ID :</label>
+        <input type="text" name="ID">
+
+        <label for="PW">ACCOUNT PASSWORD :</label>
+        <input type="password" name="PW">
+>>>>>>> 0c2aaa7d5ac779e56ceadcd44b3a91b2ca54d666
 
         <input type="submit" value="JOIN US">
     </form>
@@ -190,8 +226,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     <a href="user_index.html" class="login-button">SIGN IN</a>
 <?php endif; ?>
 
+<<<<<<< HEAD
 </div>
 </div>
 
 </body>
 </html>
+=======
+    </div>
+</div>
+
+</body>
+</html>
+>>>>>>> 0c2aaa7d5ac779e56ceadcd44b3a91b2ca54d666

@@ -13,18 +13,14 @@ phases:
   build:
     commands:
       - echo "Build started on $(date)"
-      - echo "Checking if src directory exists"
-      - zip -r src.zip ./src/
-      - zip -r scripts.zip ./scripts/
+      - echo "Checking if src and scripts directories exist"
+      - zip -r project.zip ./src/ ./scripts/ buildspec.yml appspec.yml
   post_build:
     commands:
       - echo "Build completed on $(date)"
-      - echo "Checking if src.zip was created successfully"
-      - aws s3 cp src.zip s3://hjh-codebuild-bucket/src.zip
+      - echo "Checking if project.zip was created successfully"
+      - aws s3 cp project.zip s3://hjh-codebuild-bucket/project.zip
 
 artifacts:
   files:
-    - src.zip
-    - scripts.zip
-    - buildspec.yml
-    - appspec.yml
+    - project.zip

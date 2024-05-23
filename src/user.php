@@ -103,14 +103,14 @@
     <div class="header">
     <div class="logo-section">
          <!-- '92m.com' 텍스트에 하이퍼링크 추가 -->
-            <a href="index.html" style="text-decoration: none; color: black;">
+            <a href="user_index.html" style="text-decoration: none; color: black;">
                 <span class="logo-text">92m.com</span>
             </a>
     </div>
 
         <nav>
-            <form action="/login">
-                <input type="submit" value="SIGN IN">
+            <form action="index.html">
+                <input type="submit" value="LOG OUT">
             </form>
             <form action="/createuser">
                 <input type="submit" value="JOIN US">
@@ -127,48 +127,16 @@
 
 
 <div class="product-grid">
-<<<<<<< HEAD
-<?php
-// 데이터베이스 연결
-// 충돌이 발생했던 부분을 정리해야 합니다. 예를 들어, 아래와 같이 한 줄로 통합합니다:
-$db = new mysqli('rds_endpoint', 'username', 'password', 'db_name');
-if ($db->connect_error) {
-    die("Connection failed: " . $db->connect_error);
-}
-
-// 상품 목록 가져오기
-$sql = "SELECT PD_ID, PD_NAME, PD_PRICE, PD_DESC FROM product";
-$result = $db->query($sql);
-
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        echo "<div class='product'>";
-        echo "<a href='/product?id=" . $row["PD_ID"] . "'>";
-        echo "<img src='/img/" . $row["PD_ID"] . ".jpg' alt='상품 " . htmlspecialchars($row["PD_NAME"], ENT_QUOTES, 'UTF-8') . "'>";
-        echo "<div class='product-info'>";
-        // 상품명
-        echo "<div class='name'>" . htmlspecialchars($row["PD_NAME"], ENT_QUOTES, 'UTF-8') . "</div>";
-        // 가격
-        echo "<div class='price'>" . number_format($row["PD_PRICE"]) . "원</div>";
-        // 설명
-        echo "<div class='description'>" . htmlspecialchars($row["PD_DESC"], ENT_QUOTES, 'UTF-8') . "</div>";
-        echo "</div>";
-        echo "</a>";
-        echo "</div>";
-    }
-} else {
-    echo "상품이 존재하지 않습니다.";
-}
-// 데이터베이스 연결 종료 코드 ...
-?>
-
-=======
     <?php
             // 데이터베이스 연결
 <<<<<<< HEAD
             $db = new mysqli('${rds_endpoint}', '${username}', '${password}', '${db_name}');
 =======
+<<<<<<< HEAD
             $db = new mysqli('${rds_endpoint}', 'rootroot', 'rootroot', 'SHOP');
+=======
+            $db = new mysqli('192.168.43.2', 'root', '1234', 'SHOP');
+>>>>>>> d36778ddb10ba0c21540115d9bc81719a650a50b
 >>>>>>> 63db5b665836589ecc280393dfafb73879b8ea2a
             if ($db->connect_error) {
                 die("Connection failed: " . $db->connect_error);
@@ -181,7 +149,7 @@ if ($result->num_rows > 0) {
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 echo "<div class='product'>";
-                echo "<a href='/product?id=" . $row["PD_ID"] . "'>";
+                echo "<a href='/user_product?id=" . $row["PD_ID"] . "'>";
                 echo "<img src='/img/" . $row["PD_ID"] . ".jpg' alt='상품 " . htmlspecialchars($row["PD_NAME"], ENT_QUOTES, 'UTF-8') . "'>";
                 echo "<div class='product-info'>";
                 // 상품명
@@ -199,7 +167,6 @@ if ($result->num_rows > 0) {
         }
         // 데이터베이스 연결 종료 코드 ...
     ?>
->>>>>>> 0c2aaa7d5ac779e56ceadcd44b3a91b2ca54d666
 </div>
 
 
