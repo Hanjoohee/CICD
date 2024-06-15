@@ -1,0 +1,26 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+  pre_build:
+    commands:
+      - echo "Preparing build environment"
+      - export LC_ALL="en_US.UTF-8"
+      - locale-gen en_US en_US.UTF-8
+      - dpkg-reconfigure locales
+  build:
+    commands:
+      - echo "Build started on $(date)"
+      - echo "Checking if src and scripts directories exist"
+      - zip -r project.zip ./src/ ./scripts/ buildspec.yml appspec.yml
+  post_build:
+    commands:
+      - echo "Build completed on $(date)"
+      - echo "Checking if project.zip was created successfully"
+      - aws s3 cp project.zip s3://hjh-codebuild-bucket/project.zip
+
+artifacts:
+  files:
+    - project.zip
